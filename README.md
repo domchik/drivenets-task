@@ -1,4 +1,4 @@
-# Authentication Demo with React, FastAPI, and Nginx
+# Drivenets Authentication Demo with React, FastAPI, and Nginx
 
 This project demonstrates a simple authentication system with the following components:
 
