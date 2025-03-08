@@ -1,0 +1,47 @@
+version: '3'
+
+services:
+  # Nginx for routing and serving static files
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+      - "3001:80"  # Also exposing on port 3001 for compatibility
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./client/build:/usr/share/nginx/html  # Mount the React build files
+    depends_on:
+      - auth-service
+      - backend-service
+    networks:
+      - app-network
+
+  # Authentication service
+  auth-service:
+    build:
+      context: ./auth-service
+      dockerfile: Dockerfile
+    environment:
+      - SECRET_KEY=super_secret
+    volumes:
+      - ./auth-service:/app
+    networks:
+      - app-network
+
+  # Backend service
+  backend-service:
+    build:
+      context: ./backend-service
+      dockerfile: Dockerfile
+    environment:
+      - AUTH_SERVICE_URL=http://auth-service:5000
+    volumes:
+      - ./backend-service:/app
+    depends_on:
+      - auth-service
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
