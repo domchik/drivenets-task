@@ -5,8 +5,7 @@ from fastapi import FastAPI, Depends, HTTPException, Header, Request, status
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import Optional, Dict, Any
-
-app = FastAPI(title="Authentication Service")
+from app.main import app
 
 # Add CORS middleware
 app.add_middleware(
