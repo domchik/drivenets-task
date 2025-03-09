@@ -1,4 +1,4 @@
-# Authentication Demo with React, FastAPI, and Nginx
+# Drivenets Authentication Demo with React, FastAPI, and Nginx
 
 This project demonstrates a simple authentication system with the following components:
 
@@ -66,7 +66,6 @@ This project includes two separate nginx configurations that serve different pur
    - Serves as the primary reverse proxy for the entire application
    - Routes requests to the appropriate backend services
    - Serves the React static files from the mounted volume
-   - Includes configurations for FastAPI documentation endpoints
 
 2. **Client Nginx** (`./client/nginx/default.conf`):
    - Defined in the client's Dockerfile
