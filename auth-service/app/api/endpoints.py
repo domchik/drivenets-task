@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, Header, Request, status
 from typing import Dict, Any, Optional
+import jwt
 
 from app.models.schemas import LoginRequest, TokenResponse, ValidationResponse
 from app.core.auth import generate_token, verify_credentials, decode_token, extract_token_from_header
